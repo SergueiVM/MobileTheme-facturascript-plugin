@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const mobileViewport = window.matchMedia('(max-width: 767.98px)');
+    const mobileViewport = window.matchMedia('(max-width: 1199.98px)');
 
     function initMobileMenu() {
         const navbar = document.querySelector('nav.navbar.navbar-expand');

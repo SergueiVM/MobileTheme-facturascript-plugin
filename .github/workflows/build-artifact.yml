@@ -1,0 +1,53 @@
+name: Build MobileTheme artifact
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Read plugin version
+        id: plugin
+        shell: bash
+        run: |
+          VERSION="$(awk -F'=' '/^[[:space:]]*version[[:space:]]*=/{gsub(/[[:space:]]/, "", $2); print $2; exit}' facturascripts.ini)"
+          if [[ -z "$VERSION" ]]; then
+            echo "Could not read version from facturascripts.ini" >&2
+            exit 1
+          fi
+          ZIP_NAME="MobileTheme-v${VERSION}.zip"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "zip_name=$ZIP_NAME" >> "$GITHUB_OUTPUT"
+          echo "Building $ZIP_NAME"
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          tools: composer
+
+      - name: Install fsmaker
+        run: composer global require facturascripts/fsmaker --no-interaction --quiet
+
+      - name: Build plugin zip
+        run: |
+          ~/.composer/vendor/bin/fsmaker zip
+          test -f MobileTheme.zip
+          mv MobileTheme.zip "${{ steps.plugin.outputs.zip_name }}"
+
+      - name: Upload GitHub Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.plugin.outputs.zip_name }}
+          path: ${{ steps.plugin.outputs.zip_name }}
+          if-no-files-found: error

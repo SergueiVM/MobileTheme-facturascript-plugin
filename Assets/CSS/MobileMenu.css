@@ -1,4 +1,4 @@
-@media (max-width: 767.98px) {
+@media (max-width: 1199.98px) {
     nav.sdpt-mobile-menu > .container-fluid {
         flex-wrap: nowrap;
         justify-content: flex-start;
@@ -174,7 +174,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
     .sdpt-menu-toggle,
     .sdpt-menu-backdrop {
         display: none !important;

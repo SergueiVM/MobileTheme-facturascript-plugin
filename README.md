@@ -1,6 +1,6 @@
 # MobileTheme
 
-Plugin para FacturaScripts que adapta el menú principal y algunos elementos de marca para facilitar su uso en dispositivos móviles.
+Plugin para FacturaScripts que adapta el menú principal y algunos elementos de marca para facilitar su uso en dispositivos móviles y tablets.
 
 ## Requisitos
 
@@ -15,7 +15,7 @@ Plugin para FacturaScripts que adapta el menú principal y algunos elementos de 
 
 ## Comportamiento
 
-En pantallas de hasta 767,98 px de ancho:
+En pantallas de hasta 1199,98 px de ancho, incluidas tablets en horizontal:
 
 - Muestra el botón hamburguesa a la izquierda del logo.
 - Mantiene visible el logo y el nombre corto de la empresa; el nombre se trunca si no cabe.
@@ -25,7 +25,7 @@ En pantallas de hasta 767,98 px de ancho:
 - Cierra el panel al pulsar una opción de navegación, el fondo o la tecla Escape.
 - Evita el desplazamiento del contenido de fondo mientras el panel está abierto.
 
-A partir de 768 px se conserva la navegación de escritorio de FacturaScripts. El plugin utiliza el navbar estándar de la plantilla principal.
+A partir de 1200 px se conserva la navegación de escritorio de FacturaScripts. El plugin utiliza el navbar estándar de la plantilla principal.
 
 ## Estructura
 
